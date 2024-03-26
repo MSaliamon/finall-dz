@@ -55,7 +55,6 @@ const TodoList = () => {
       inputRef.current.focus();
     }
   }, [editIndex]);
-  
 
   return (
     <div>
@@ -73,10 +72,11 @@ const TodoList = () => {
               />
             ) : (
               <span style={{ textDecoration: todo.completed ? 'line-through' : 'none' }}>
+                <input type="checkbox" checked={todo.completed} onChange={() => toggleTodo(index)} />
                 {todo.text}
               </span>
             )}
-             <Badge bg="danger" as={Button}  onClick= {() => setTodos(todos.filter((_, i) => i !== index))}>
+            <Badge bg="danger" as={Button} onClick={() => setTodos(todos.filter((_, i) => i !== index))}>
               Delete
             </Badge>
           </li>
@@ -87,7 +87,7 @@ const TodoList = () => {
         value={inputValue}
         onChange={(e) => setInputValue(e.target.value)}
       />
-      <Badge bg="success"  as={Button} onClick={addTodo}>
+      <Badge bg="success" as={Button} onClick={addTodo}>
         Add Todo
       </Badge>
     </div>
